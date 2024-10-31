@@ -1,7 +1,7 @@
 # myApp/urls.py
 from django.urls import path
 from . import views
-from django.conf import settings
+from django.conf import settings as django_settings
 from django.conf.urls.static import static
 from .views import staff_detail, attendance_success
 from .views import edit_staff , manage_staff_view, add_staff, edit_staff, delete_staff
@@ -13,14 +13,18 @@ from myApp import views
 from .views import generate_pay_slip, pay_slip, view_pay_slip
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import home, daily_attendance, staff_profiles, view_bio, staff_success, attendance, view_attendance, attendance_staff_detail, attendance_menu, weekly_attendance, monthly_attendance, error, edit_earnings
+from .views import home, daily_attendance, staff_profiles, view_bio, staff_success, attendance, view_attendance, attendance_staff_detail, attendance_menu, weekly_attendance, monthly_attendance, error, edit_earnings, settings
 app_name = 'myApp'  # This app_name should match in your templates
+
+from . import views 
 
 urlpatterns = [
     
     #______________________________________________LOGIN___________________________________________________________
 
     path('', views.home, name='home'),
+    path('login/', views.login_view, name='login'),
+    path('home/', views.home, name='home'),
  
 
     #______________________________________________ HOME________________________________________________________________
@@ -74,4 +78,4 @@ urlpatterns = [
     
     #______________________________________________settings___________________________________________________________
     path('settings/', views.settings, name='settings'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(django_settings.MEDIA_URL, document_root=django_settings.MEDIA_ROOT)

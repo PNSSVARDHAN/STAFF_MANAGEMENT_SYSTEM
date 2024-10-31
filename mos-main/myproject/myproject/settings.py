@@ -1,5 +1,5 @@
-import os
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -10,7 +10,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(os.environ['APPDATA'], 'MOSTINDIA', 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -56,7 +56,9 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',  # Simplified path
+        'NAME': os.path.join(BASE_DIR / 'db.sqlite3'),
+        
+
         'OPTIONS': {
             'timeout': 20,
         },

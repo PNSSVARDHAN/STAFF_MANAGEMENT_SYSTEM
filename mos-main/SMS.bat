@@ -12,9 +12,6 @@ if not exist "manage.py" (
     exit /b
 )
 
-REM Run Django migrations to set up the database
-echo Running Django migrations...
-python manage.py migrate || (echo Failed to apply migrations. & pause & exit /b)
 
 REM Start the Django server and log output
 start cmd /k "python manage.py runserver 8080"
